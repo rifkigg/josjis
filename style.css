@@ -6,6 +6,28 @@
   scroll-behavior: smooth;
 }
 
+img[loading="lazy"] {
+  filter: blur(3px);
+  transition: filter 0.4s ease;
+}
+
+img:not([loading="lazy"]) {
+  filter: none;
+}
+
+/* Perbaiki efek awal AOS agar tidak menyebabkan layout shift */
+[data-aos] {
+  transform: none !important;
+}
+body.aos-init [data-aos] {
+  opacity: 0;
+}
+body.aos-animate [data-aos] {
+  opacity: 1;
+  transform: none !important;
+  transition: opacity 0.6s ease;
+}
+
 .btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
@@ -40,6 +62,7 @@ nav {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  will-change: transform;
 }
 
 nav a {
@@ -94,6 +117,7 @@ nav .logo img {
   nav {
     justify-content: space-between;
     padding: 0.8rem 1.2rem;
+    will-change: transform;
   }
 
   .nav-links {

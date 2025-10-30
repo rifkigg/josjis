@@ -2,11 +2,11 @@ const kontak = document.getElementById("kontak");
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
-AOS.init({
-  duration: 900,
-  delay: 100,
-  once: true,
-  easing: 'ease-in-out'
+window.addEventListener("load", () => {
+  AOS.init({
+    duration: 900,
+    once: true,
+  });
 });
 
 
@@ -22,5 +22,11 @@ menuToggle.addEventListener("click", () => {
 navLinks.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.classList.remove("active");
+  });
+});
+
+document.querySelectorAll("img[loading='lazy']").forEach(img => {
+  img.addEventListener("load", () => {
+    img.style.filter = "none";
   });
 });
